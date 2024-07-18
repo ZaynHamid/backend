@@ -6,10 +6,10 @@
     "scripts": {
         "start": "node index.js",
         "test": "echo \"err\" && exit 1"
-
     },
     "type": "module",
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.19.2",
         "socket.io": "^4.7.5",
         "sqlite": "^5.1.1",

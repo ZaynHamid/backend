@@ -1,13 +1,17 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import cors from 'cors'
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
+app.use(cors())
+
 const users = {};
 const messageHistory = {};
+
 
 io.on('connection', (socket) => {
     socket.on('name', (info) => {
