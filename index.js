@@ -1,17 +1,17 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import cors from 'cors'
+import cors from 'cors';
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
-app.use(cors())
+// Enable CORS for all origins
+app.use(cors());
 
 const users = {};
 const messageHistory = {};
-
 
 io.on('connection', (socket) => {
     socket.on('name', (info) => {
@@ -68,6 +68,6 @@ app.get('/', (req, res) => {
     res.send('Socket.IO server is running');
 });
 
-server.listen(3000, () => {
-    console.log('Server running on port 3000');
+server.listen(process.env.PORT || 3000, () => {
+    console.log(`Server running on port ${server.address().port}`);
 });
